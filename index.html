@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Manufacturing Intelligence Japan Launch</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Audiowide&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background-color: #000;
+        }
+        .poster-container {
+            width: 1080px;
+            min-height: 1920px;
+            position: relative;
+            overflow: hidden;
+            background-color: #030310;
+        }
+        .japan-flag {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            background-color: white;
+            border-radius: 50%;
+            position: relative;
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.6), 0 0 40px rgba(255, 0, 0, 0.3);
+        }
+        .japan-flag::after {
+            content: '';
+            position: absolute;
+            width: 36px;
+            height: 36px;
+            background-color: #bc002d;
+            border-radius: 50%;
+            top: 12px;
+            left: 12px;
+        }
+        .tech-grid, .circuit-overlay, .holographic-overlay, .ai-mesh, .noise-overlay, .holo-effect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        .tech-grid {
+            opacity: 0.12;
+            background-image: url('https://images.unsplash.com/photo-1558346547-4b68d96e11c8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1080&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        .circuit-overlay {
+            opacity: 0.15;
+            background-image: url('https://images.unsplash.com/photo-1551376347-075b0121a65b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1080&q=80');
+            background-size: cover;
+            background-position: center;
+            mix-blend-mode: overlay;
+        }
+        .holographic-overlay {
+            opacity: 0.2;
+            background-image: url('https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1080&q=80');
+            background-size: cover;
+            background-position: center;
+            mix-blend-mode: color-dodge;
+        }
+        .ai-mesh {
+            opacity: 0.2;
+            background-size: cover;
+            mix-blend-mode: overlay;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%232563eb' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        .holo-effect {
+            background: linear-gradient(45deg, rgba(0, 219, 222, 0.03) 0%, rgba(252, 0, 255, 0.03) 100%);
+            mix-blend-mode: screen;
+        }
+        .noise-overlay {
+            background-image: url('https://www.transparenttextures.com/patterns/noise-pattern-with-subtle-cross-lines.png');
+            opacity: 0.05;
+        }
+        .neon-accent { text-shadow: 0 0 15px #00c3ff, 0 0 25px #00c3ff, 0 0 40px rgba(0, 195, 255, 0.5); }
+        .neon-text {
+            color: #fff;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.8), 0 0 15px #00c3ff, 0 0 20px rgba(0, 195, 255, 0.4);
+            letter-spacing: 1.5px;
+        }
+        .futuristic-title { font-family: 'Audiowide', cursive; letter-spacing: 2px; text-transform: uppercase; position: relative; }
+        .premium-subtitle { font-family: 'Syncopate', sans-serif; letter-spacing: 3px; font-weight: 700; }
+        .glass-card {
+            background: rgba(12, 19, 38, 0.65);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(148, 163, 184, 0.15);
+            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.45), inset 0 1px 2px 0 rgba(255, 255, 255, 0.1);
+        }
+        .glass-badge {
+            background: rgba(23, 39, 85, 0.25);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-left: 3px solid rgba(59, 130, 246, 0.8);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+        }
+        .glass-badge:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.1), 0 0 15px rgba(59, 130, 246, 0.4);
+        }
+        .glow-circle {
+            position: absolute; border-radius: 50%; z-index: 0;
+            animation: pulse-slow 8s infinite alternate; opacity: 0.8;
+        }
+        .highlight-box { position: relative; overflow: hidden; }
+        .highlight-box::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+            background: rgba(255, 255, 255, 0.05); transform: skewX(-25deg);
+            animation: light-sweep 6s infinite;
+        }
+        @keyframes light-sweep { 0% { left: -100%; } 40% { left: 100%; } 100% { left: 100%; } }
+        .particle {
+            position: absolute; background-color: rgba(59, 130, 246, 0.5); border-radius: 50%;
+            animation: float 20s infinite linear; box-shadow: 0 0 15px rgba(59, 130, 246, 0.6);
+        }
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); opacity: 0.2; }
+            50% { transform: translateY(-30px) rotate(180deg); opacity: 0.8; }
+            100% { transform: translateY(0px) rotate(360deg); opacity: 0.2; }
+        }
+        .role-icon {
+            border-radius: 50%; background: rgba(14, 51, 126, 0.3); display: flex;
+            align-items: center; justify-content: center; width: 42px; height: 42px;
+            margin-right: 14px; box-shadow: 0 0 20px rgba(59, 130, 246, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+            position: relative; z-index: 2; flex-shrink: 0;
+        }
+        .role-icon::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            border-radius: 50%; background: rgba(59, 130, 246, 0.1); z-index: -1;
+            animation: pulse-icon 2s infinite;
+        }
+        @keyframes pulse-icon {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.6); }
+            70% { box-shadow: 0 0 0 15px rgba(59, 130, 246, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+        }
+        .pulse { animation: pulse 2s infinite; }
+        @keyframes pulse-slow { 0% { transform: scale(0.95); opacity: 0.7; } 100% { transform: scale(1.05); opacity: 0.9; } }
+        .shimmer { position: relative; overflow: hidden; }
+        .shimmer::after {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: linear-gradient(to bottom right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0) 100%);
+            transform: rotate(30deg); animation: shimmer 6s infinite;
+        }
+        @keyframes shimmer { 0% { transform: translateX(-100%) rotate(30deg); } 100% { transform: translateX(100%) rotate(30deg); } }
+        .card-3d {
+            transform: perspective(1000px);
+            transition: all 0.3s ease-in-out;
+        }
+        .card-3d:hover { transform: perspective(1000px) translateY(-5px); }
+        .check-item {
+            display: flex; align-items: center; margin-bottom: 12px;
+            padding: 10px 12px; border-left: 2px solid rgba(59, 130, 246, 0.5);
+            background: rgba(14, 51, 126, 0.15); border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+        .check-item:hover { background: rgba(14, 51, 126, 0.35); transform: translateX(5px); }
+        .contact-item { display: flex; align-items: center; margin-bottom: 12px; transition: all 0.3s ease; }
+        .contact-item:hover { transform: translateX(5px); }
+        .contact-icon {
+            background: rgba(14, 51, 126, 0.3); width: 42px; height: 42px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; margin-right: 14px; flex-shrink: 0;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+        }
+    </style>
+</head>
+<body>
+<div class="poster-container">
+    <!-- Background elements -->
+    <div class="tech-grid"></div>
+    <div class="circuit-overlay"></div>
+    <div class="ai-mesh"></div>
+    <div class="holographic-overlay"></div>
+    <div class="noise-overlay"></div>
+    <div class="holo-effect"></div>
+    
+    <!-- Particle system -->
+    <div class="particle-system pointer-events-none">
+        <div class="particle" style="top: 15%; left: 10%; width: 6px; height: 6px; animation-delay: 0s; animation-duration: 18s;"></div>
+        <div class="particle" style="top: 25%; left: 80%; width: 4px; height: 4px; animation-delay: 1s; animation-duration: 22s;"></div>
+        <div class="particle" style="top: 85%; left: 15%; width: 8px; height: 8px; animation-delay: 2s; animation-duration: 20s;"></div>
+        <div class="particle" style="top: 95%; left: 90%; width: 3px; height: 3px; animation-delay: 3s; animation-duration: 25s;"></div>
+        <div class="particle" style="top: 50%; left: 50%; width: 5px; height: 5px; animation-delay: 4s; animation-duration: 16s;"></div>
+        <div class="particle" style="top: 5%; left: 30%; width: 7px; height: 7px; animation-delay: 5s; animation-duration: 24s;"></div>
+        <div class="particle" style="top: 60%; left: 5%; width: 4px; height: 4px; animation-delay: 6s; animation-duration: 18s;"></div>
+    </div>
+    
+    <!-- Glowing orbs -->
+    <div class="glow-circle" style="width: 800px; height: 800px; background: rgba(0, 50, 175, 0.2); filter: blur(180px); top: -300px; right: -200px;"></div>
+    <div class="glow-circle" style="width: 600px; height: 600px; background: rgba(90, 0, 190, 0.18); filter: blur(160px); top: 30%; left: -300px;"></div>
+    <div class="glow-circle" style="width: 700px; height: 700px; background: rgba(0, 195, 255, 0.12); filter: blur(200px); bottom: -200px; right: -100px;"></div>
+
+    <!-- Content Container -->
+    <div class="relative z-10 flex flex-col items-center justify-between h-full px-12 py-16 text-white">
+        
+        <!-- Header Section -->
+        <div class="text-center w-full mb-8 mt-6 relative shimmer">
+            <div class="flex items-center justify-center mb-6 space-x-3">
+                <div class="japan-flag mr-3 pulse"></div>
+                <h3 class="premium-subtitle text-xl font-extrabold tracking-widest text-transparent bg-clip-text" style="background-image: linear-gradient(to right, #60a5fa, #93c5fd); -webkit-background-clip: text;">WE ARE LAUNCHING IN JAPAN!</h3>
+            </div>
+            <h1 class="futuristic-title text-6xl font-black mb-2 neon-accent tracking-tighter" style="letter-spacing: -1px;">AI-DRIVEN</h1>
+            <h1 class="futuristic-title text-6xl font-black mb-2 tracking-tighter" style="letter-spacing: -1px;">MANUFACTURING</h1>
+            <h1 class="futuristic-title text-6xl font-black mb-4 tracking-tighter" style="letter-spacing: -1px;">INTELLIGENCE PLATFORM</h1>
+            <div class="relative">
+                <div class="w-60 h-1 mx-auto my-4 bg-gradient-to-r from-transparent via-blue-500 to-transparent"></div>
+                <h2 class="premium-subtitle text-xl font-bold text-blue-300 tracking-wide">SPC SOFTWARE STARTUP</h2>
+            </div>
+        </div>
+
+        <!-- Value Proposition -->
+        <div class="glass-card rounded-2xl py-5 px-8 text-center mb-7 w-full highlight-box card-3d">
+            <h3 class="premium-subtitle text-md font-bold text-blue-400 mb-2 tracking-wider">IMPROVE PROFIT & COMPLIANCE WITH</h3>
+            <h3 class="neon-text text-2xl font-bold mb-3">NEXT-GEN MANUFACTURING INTELLIGENCE</h3>
+            <p class="text-gray-300 text-md">Our mission is to transform global manufacturing through real-time insights, automation, and precision-driven decision-making.</p>
+        </div>
+
+        <!-- Team Formation Section -->
+        <div class="w-full mb-6 card-3d glass-card rounded-2xl p-6">
+            <div class="text-center mb-5">
+                <h3 class="futuristic-title text-2xl font-bold mb-2 neon-text">WE'RE FORMING OUR CORE TEAM</h3>
+                <p class="text-blue-300 text-md">(VOLUNTEER - FOUNDING LEVEL)</p>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <div class="glass-badge rounded-lg py-3 px-4 flex items-center"><div class="role-icon"><i class="fas fa-flask text-blue-400 text-xl"></i></div><span class="text-md font-medium text-blue-100">R&D Innovators</span></div>
+                <div class="glass-badge rounded-lg py-3 px-4 flex items-center"><div class="role-icon"><i class="fas fa-chart-line text-blue-400 text-xl"></i></div><span class="text-md font-medium text-blue-100">SPC Experts</span></div>
+                <div class="glass-badge rounded-lg py-3 px-4 flex items-center"><div class="role-icon"><i class="fas fa-coins text-blue-400 text-xl"></i></div><span class="text-md font-medium text-blue-100">Financial Manager</span></div>
+                <div class="glass-badge rounded-lg py-3 px-4 flex items-center"><div class="role-icon"><i class="fas fa-industry text-blue-400 text-xl"></i></div><span class="text-md font-medium text-blue-100">Manufacturing Pros</span></div>
+                <div class="glass-badge rounded-lg py-3 px-4 flex items-center"><div class="role-icon"><i class="fas fa-bullhorn text-blue-400 text-xl"></i></div><span class="text-md font-medium text-blue-100">Marketing Specialists</span></div>
+                <div class="glass-badge rounded-lg py-3 px-4 flex items-center"><div class="role-icon"><i class="fas fa-users text-blue-400 text-xl"></i></div><span class="text-md font-medium text-blue-100">Community Managers</span></div>
+                <div class="glass-badge rounded-lg py-3 px-4 flex items-center col-span-2"><div class="role-icon"><i class="fas fa-language text-blue-400 text-xl"></i></div><span class="text-md font-medium text-blue-100">Content Creators & Translators</span></div>
+            </div>
+        </div>
+
+        <!-- Why Join Us Section -->
+        <div class="w-full mb-7 glass-card rounded-2xl p-6 card-3d">
+            <h3 class="futuristic-title text-2xl font-bold mb-4 text-center neon-text">WHY JOIN US?</h3>
+            <div class="space-y-2">
+                <div class="check-item"><i class="fas fa-check-circle text-blue-400 mr-4 text-lg"></i><span class="text-md">Shape a <span class="font-bold text-blue-200">high-impact startup</span> from Day 1</span></div>
+                <div class="check-item"><i class="fas fa-check-circle text-blue-400 mr-4 text-lg"></i><span class="text-md">Be part of a <span class="font-bold text-blue-200">Japan-based global venture</span></span></div>
+                <div class="check-item"><i class="fas fa-check-circle text-blue-400 mr-4 text-lg"></i><span class="text-md">Collaborate with <span class="font-bold text-blue-200">visionaries in AI + Manufacturing</span></span></div>
+                <div class="check-item"><i class="fas fa-check-circle text-blue-400 mr-4 text-lg"></i><span class="text-md">Receive <span class="font-bold text-blue-200">core recognition, equity, or leadership</span></span></div>
+            </div>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="w-full mb-6 glass-card rounded-2xl p-6 card-3d">
+            <h3 class="futuristic-title text-2xl font-bold mb-5 text-center neon-text">LET'S BUILD A SMARTER WORLD</h3>
+            <div class="mt-4">
+                <div class="contact-item"><div class="contact-icon"><i class="fas fa-map-marker-alt text-blue-400 text-xl"></i></div><span class="text-md text-blue-100">Based in: <span class="font-bold text-white">Japan</span></span></div>
+                <div class="contact-item"><div class="contact-icon"><i class="fas fa-envelope text-blue-400 text-xl"></i></div><span class="text-md text-blue-100">Email: <span class="font-bold text-white">akash2k01@techie.com</span></span></div>
+                <div class="contact-item"><div class="contact-icon"><i class="fab fa-whatsapp text-blue-400 text-xl"></i></div><span class="text-md text-blue-100">WhatsApp: <span class="font-bold text-white">+81-7091714442</span></span></div>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="w-full text-center mt-2">
+            <div class="glass-card rounded-2xl py-5 px-6 border-t-2 border-blue-500 border-opacity-50 card-3d">
+                <p class="text-blue-300 mb-2 text-md">🚀 <span class="italic">Ready to revolutionize manufacturing?</span></p>
+                <h3 class="neon-text text-2xl font-bold tracking-wide">JOIN OUR MISSION. CREATE IMPACT.</h3>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
