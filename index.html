@@ -3,329 +3,258 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Manufacturing Intelligence - The Intro</title>
+    <title>AK SOLUTIONS :: PROJECT GENESIS_</title>
     
-    <!-- STYLES -->
+    <!-- EXTERNAL LIBRARIES & FONTS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Audiowide&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
-        /* Base and Poster Styles */
-        body {
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-            background-color: #030310;
-            color: white;
-        }
+        /* 
+        ========================================
+        HOLLYWOOD VFX / MOTION GRAPHICS CSS
+        ========================================
+        */
+        :root { --accent-red: #ff3c3c; --accent-blue: #00aaff; }
+        html, body { cursor: none; } /* Hide default cursor for full immersion */
+        body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; overflow: hidden; background-color: #000000; color: white; opacity: 0; }
         
-        #webgl-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            outline: none;
-            z-index: 0;
-        }
-
-        #intro-container {
-            height: 100vh;
-            width: 100%;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .intro-scene {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 5rem 3rem;
-            opacity: 0; /* Hidden by default */
-            pointer-events: none; /* Non-interactive when invisible */
-        }
+        #vfx-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+        #webgl-canvas { position: absolute; top: 0; left: 0; }
         
-        .content-wrapper {
-            max-width: 1080px;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
+        #intro-container { height: 100vh; width: 100%; position: relative; overflow: hidden; perspective: 1200px; }
+        .intro-scene { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; padding: 2rem; opacity: 0; pointer-events: none; }
+        .content-wrapper { max-width: 1100px; width: 100%; text-align: center; transform-style: preserve-3d; }
 
-        #scroll-indicator {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 100;
-            color: rgba(255, 255, 255, 0.7);
-            font-family: 'Syncopate', sans-serif;
-            letter-spacing: 2px;
-            transition: opacity 0.5s ease;
-        }
-        #scroll-indicator .arrow {
-            display: block;
-            margin: 10px auto 0;
-            width: 20px;
-            height: 20px;
-            border-left: 2px solid;
-            border-bottom: 2px solid;
-            transform: rotate(-45deg);
-            animation: bounce 2s infinite;
-        }
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0) rotate(-45deg); }
-            40% { transform: translateY(-10px) rotate(-45deg); }
-            60% { transform: translateY(-5px) rotate(-45deg); }
-        }
+        /* Core Styles */
+        .futuristic-title { font-family: 'Audiowide', cursive; text-transform: uppercase; }
+        .premium-subtitle { font-family: 'Syncopate', sans-serif; letter-spacing: 4px; font-weight: 700; }
+        .glass-card { background: rgba(12, 19, 38, 0.85); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px); border: 1px solid rgba(0, 170, 255, 0.4); box-shadow: 0 30px 70px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(0, 170, 255, 0.5); }
+        .brand-ak { color: #fff; text-shadow: 0 0 10px rgba(255,255,255,0.5); }
+        .brand-solutions { color: var(--accent-red); text-shadow: 0 0 15px var(--accent-red), 0 0 30px var(--accent-red), 0 0 60px rgba(255, 60, 60, 0.6); }
+        .neon-text-blue { color: #fff; text-shadow: 0 0 10px var(--accent-blue), 0 0 20px var(--accent-blue), 0 0 40px rgba(0, 170, 255, 0.7); }
+        .char { display: inline-block; }
+        .tech-item { font-family: 'Syncopate', sans-serif; font-weight: 700; letter-spacing: 2px; }
+        .solution-item { font-family: 'Audiowide', cursive; font-size: 0.8rem; padding: 4px 8px; margin: 2px; background: rgba(0, 170, 255, 0.1); border-left: 2px solid var(--accent-blue); }
 
-        #main-content {
-            background-color: #0c1326;
-            position: relative;
-            z-index: 10;
-            padding: 100px 50px;
+        /* VFX Overlays */
+        #vignette { position: fixed; top: 0; left: 0; width: 100%; height: 100%; box-shadow: inset 0 0 25vw 12vw #000; pointer-events: none; z-index: 10; }
+        #scanlines { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 98%, rgba(255,255,255,0.1) 99%, rgba(255,255,255,0) 100%); background-size: 100% 4px; opacity: 0.3; animation: scan 10s linear infinite; pointer-events: none; z-index: 15; }
+        #shockwave { position: fixed; top: 50%; left: 50%; width: 1px; height: 1px; border-radius: 50%; border: 3px solid rgba(255, 255, 255, 1); transform: translate(-50%, -50%); opacity: 0; pointer-events: none; z-index: 30; }
+        #custom-cursor { position: fixed; width: 20px; height: 20px; border: 2px solid var(--accent-blue); border-radius: 50%; pointer-events: none; z-index: 10000; transform: translate(-50%, -50%); transition: transform 0.1s ease-out; }
+
+        @keyframes scan { from { background-position-y: 0; } to { background-position-y: 40px; } }
+
+        /* Final CTA Button */
+        .cta-button-final {
+            font-family: 'Syncopate', sans-serif; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; padding: 1.2rem 3rem; font-size: 1.2rem; color: #fff;
+            background: linear-gradient(45deg, var(--accent-red), #a11d1d); border: 2px solid var(--accent-red); border-radius: 10px; cursor: none;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 0 30px var(--accent-red), 0 0 60px #a11d1d, inset 0 0 25px rgba(255, 255, 255, 0.3);
+            animation: pulse-glow 2.5s infinite;
         }
-
-        /* --- Reusing your awesome poster styles --- */
-        .japan-flag { display: inline-block; width: 60px; height: 60px; background-color: white; border-radius: 50%; position: relative; box-shadow: 0 0 25px rgba(255, 255, 255, 0.6), 0 0 40px rgba(255, 0, 0, 0.3); }
-        .japan-flag::after { content: ''; position: absolute; width: 36px; height: 36px; background-color: #bc002d; border-radius: 50%; top: 12px; left: 12px; }
-        .neon-accent { text-shadow: 0 0 15px #00c3ff, 0 0 25px #00c3ff, 0 0 40px rgba(0, 195, 255, 0.5); }
-        .neon-text { color: #fff; text-shadow: 0 0 5px rgba(255, 255, 255, 0.8), 0 0 15px #00c3ff, 0 0 20px rgba(0, 195, 255, 0.4); letter-spacing: 1.5px; }
-        .futuristic-title { font-family: 'Audiowide', cursive; letter-spacing: 2px; text-transform: uppercase; }
-        .premium-subtitle { font-family: 'Syncopate', sans-serif; letter-spacing: 3px; font-weight: 700; }
-        .glass-card { background: rgba(12, 19, 38, 0.65); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(148, 163, 184, 0.15); box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.45), inset 0 1px 2px 0 rgba(255, 255, 255, 0.1); }
-        .glass-badge { background: rgba(23, 39, 85, 0.25); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-left: 3px solid rgba(59, 130, 246, 0.8); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.08); }
-        .role-icon { border-radius: 50%; background: rgba(14, 51, 126, 0.3); display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; margin-right: 14px; box-shadow: 0 0 20px rgba(59, 130, 246, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.1); flex-shrink: 0; }
-        .check-item { display: flex; align-items: center; margin-bottom: 12px; padding: 10px 12px; border-left: 2px solid rgba(59, 130, 246, 0.5); background: rgba(14, 51, 126, 0.15); border-radius: 6px; }
-        .contact-item { display: flex; align-items: center; margin-bottom: 12px; }
-        .contact-icon { background: rgba(14, 51, 126, 0.3); width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; border-radius: 50%; margin-right: 14px; flex-shrink: 0; box-shadow: 0 0 15px rgba(59, 130, 246, 0.3); }
-
+        .cta-button-final:hover { transform: translateY(-5px) scale(1.05); }
+        @keyframes pulse-glow { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.02); } }
     </style>
 </head>
 <body>
+    <!-- HTML CONTENT -->
+    <div id="vfx-container"><canvas id="webgl-canvas"></canvas></div>
+    <div id="vignette"></div>
+    <div id="scanlines"></div>
+    <div id="shockwave"></div>
+    <div id="custom-cursor"></div>
 
-<!-- 3D Background Canvas -->
-<canvas id="webgl-canvas"></canvas>
-
-<!-- Scroll Indicator -->
-<div id="scroll-indicator">
-    SCROLL TO PLAY
-    <span class="arrow"></span>
-</div>
-
-<!-- This container will be "pinned" while the intro plays -->
-<div id="intro-container">
-
-    <!-- SCENE 1: THE SPARK OF AN IDEA -->
-    <div id="scene1" class="intro-scene" style="opacity: 1; pointer-events: auto;">
-        <div class="content-wrapper text-center">
-            <div class="flex items-center justify-center mb-6 space-x-3">
-                <div class="japan-flag mr-3"></div>
-                <h3 class="premium-subtitle text-xl font-extrabold tracking-widest text-transparent bg-clip-text" style="background-image: linear-gradient(to right, #60a5fa, #93c5fd);">WE ARE LAUNCHING IN JAPAN!</h3>
-            </div>
-            <div>
-              <h1 class="futuristic-title text-6xl font-black mb-2 neon-accent tracking-tighter" style="letter-spacing: -1px;">AI-DRIVEN</h1>
-              <h1 class="futuristic-title text-6xl font-black mb-2 tracking-tighter" style="letter-spacing: -1px;">MANUFACTURING</h1>
-              <h1 class="futuristic-title text-6xl font-black mb-4 tracking-tighter" style="letter-spacing: -1px;">INTELLIGENCE PLATFORM</h1>
-            </div>
-            <div class="relative">
-                <div class="w-60 h-1 mx-auto my-4 bg-gradient-to-r from-transparent via-blue-500 to-transparent"></div>
-                <h2 class="premium-subtitle text-xl font-bold text-blue-300 tracking-wide">SPC SOFTWARE STARTUP</h2>
-            </div>
-        </div>
-    </div>
-
-    <!-- SCENE 2: THE MISSION -->
-    <div id="scene2" class="intro-scene">
-        <div class="content-wrapper">
-             <div class="glass-card rounded-2xl py-8 px-8 text-center w-full max-w-4xl">
-                <h3 class="premium-subtitle text-md font-bold text-blue-400 mb-2 tracking-wider">IMPROVE PROFIT & COMPLIANCE WITH</h3>
-                <h3 class="neon-text text-3xl font-bold mb-3">NEXT-GEN MANUFACTURING INTELLIGENCE</h3>
-                <p class="text-gray-300 text-lg">Our mission is to transform global manufacturing through real-time insights, automation, and precision-driven decision-making.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- SCENE 3: ASSEMBLING THE TEAM -->
-    <div id="scene3" class="intro-scene">
-        <div class="content-wrapper">
-            <div class="w-full max-w-4xl glass-card rounded-2xl p-8">
-                <div class="text-center mb-6">
-                    <h3 class="futuristic-title text-3xl font-bold mb-2 neon-text">WE'RE FORMING OUR CORE TEAM</h3>
-                    <p class="text-blue-300 text-md">(VOLUNTEER - FOUNDING LEVEL)</p>
-                </div>
-                <div class="grid grid-cols-2 gap-5 team-grid">
-                    <div class="glass-badge rounded-lg py-3 px-4 flex items-center"><div class="role-icon"><i class="fas fa-flask text-blue-400 text-xl"></i></div><span class="text-md font-medium text-blue-100">R&D Innovators</span></div>
-                    <div class="glass-badge rounded-lg py-3 px-4 flex items-center"><div class="role-icon"><i class="fas fa-chart-line text-blue-400 text-xl"></i></div><span class="text-md font-medium text-blue-100">SPC Experts</span></div>
-                    <div class="glass-badge rounded-lg py-3 px-4 flex items-center"><div class="role-icon"><i class="fas fa-coins text-blue-400 text-xl"></i></div><span class="text-md font-medium text-blue-100">Financial Manager</span></div>
-                    <div class="glass-badge rounded-lg py-3 px-4 flex items-center"><div class="role-icon"><i class="fas fa-industry text-blue-400 text-xl"></i></div><span class="text-md font-medium text-blue-100">Manufacturing Pros</span></div>
-                    <div class="glass-badge rounded-lg py-3 px-4 flex items-center"><div class="role-icon"><i class="fas fa-bullhorn text-blue-400 text-xl"></i></div><span class="text-md font-medium text-blue-100">Marketing Specialists</span></div>
-                    <div class="glass-badge rounded-lg py-3 px-4 flex items-center"><div class="role-icon"><i class="fas fa-users text-blue-400 text-xl"></i></div><span class="text-md font-medium text-blue-100">Community Managers</span></div>
-                    <div class="glass-badge rounded-lg py-3 px-4 flex items-center col-span-2"><div class="role-icon"><i class="fas fa-language text-blue-400 text-xl"></i></div><span class="text-md font-medium text-blue-100">Content Creators & Translators</span></div>
+    <div id="intro-container">
+        <!-- Scene 1: The Reveal -->
+        <div id="scene1" class="intro-scene"><div class="content-wrapper">
+            <h1 id="main-title" class="futuristic-title text-6xl md:text-8xl font-black tracking-tighter"></h1>
+            <h2 id="subtitle1" class="premium-subtitle text-lg md:text-xl text-blue-300 mt-6 tracking-widest">WE ARE LAUNCHING IN JAPAN</h2>
+            <p id="subtext1" class="text-gray-400 mt-4 max-w-2xl mx-auto">We are building the future of factories with <br> AI-Driven Manufacturing Intelligence.</p>
+        </div></div>
+        
+        <!-- Scene 2: The Technology -->
+        <div id="scene2" class="intro-scene"><div class="content-wrapper">
+             <div class="w-full max-w-5xl">
+                <h3 class="futuristic-title text-2xl md:text-3xl font-bold mb-6 neon-text-blue"> POWERED BY THE FUTURE </h3>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-4 text-left text-lg">
+                    <div class="tech-item"><i class="fas fa-brain mr-3 text-blue-400"></i>AI & Data Science</div>
+                    <div class="tech-item"><i class="fas fa-chart-line mr-3 text-blue-400"></i>Advanced Statistics</div>
+                    <div class="tech-item"><i class="fas fa-wifi mr-3 text-blue-400"></i>Industrial IoT</div>
+                    <div class="tech-item"><i class="fas fa-server mr-3 text-blue-400"></i>Cloud-Edge Fabric</div>
+                    <div class="tech-item"><i class="fas fa-link mr-3 text-blue-400"></i>Integration APIs</div>
+                    <div class="tech-item"><i class="fas fa-truck mr-3 text-blue-400"></i>EDI Smart Supply Chain</div>
                 </div>
             </div>
-        </div>
-    </div>
+        </div></div>
 
-    <!-- SCENE 4: WHY JOIN US -->
-    <div id="scene4" class="intro-scene">
-        <div class="content-wrapper">
-             <div class="w-full max-w-4xl glass-card rounded-2xl p-8">
-                <h3 class="futuristic-title text-3xl font-bold mb-6 text-center neon-text">WHY JOIN US?</h3>
-                <div class="space-y-3 check-items-container">
-                    <div class="check-item"><i class="fas fa-check-circle text-blue-400 mr-4 text-lg"></i><span class="text-md">Shape a <span class="font-bold text-blue-200">high-impact startup</span> from Day 1</span></div>
-                    <div class="check-item"><i class="fas fa-check-circle text-blue-400 mr-4 text-lg"></i><span class="text-md">Be part of a <span class="font-bold text-blue-200">Japan-based global venture</span></span></div>
-                    <div class="check-item"><i class="fas fa-check-circle text-blue-400 mr-4 text-lg"></i><span class="text-md">Collaborate with <span class="font-bold text-blue-200">visionaries in AI + Manufacturing</span></span></div>
-                    <div class="check-item"><i class="fas fa-check-circle text-blue-400 mr-4 text-lg"></i><span class="text-md">Receive <span class="font-bold text-blue-200">core recognition, equity, or leadership</span></span></div>
+        <!-- Scene 3: The Platform -->
+        <div id="scene3" class="intro-scene"><div class="content-wrapper">
+            <div class="w-full max-w-6xl">
+                <h3 class="futuristic-title text-2xl md:text-3xl font-bold mb-6 neon-text-blue"> A UNIFIED INTELLIGENCE PLATFORM </h3>
+                <div class="grid grid-cols-3 md:grid-cols-5 gap-2">
+                    <div class="solution-item">Online SPC</div> <div class="solution-item">AI Interpretation</div> <div class="solution-item">MSA Software</div>
+                    <div class="solution-item">Production Mgmt</div> <div class="solution-item">Maintenance Mgmt</div> <div class="solution-item">EBR Software</div>
+                    <div class="solution-item">Anytime APQR</div> <div class="solution-item">Quality Mgmt</div> <div class="solution-item">MES</div>
+                    <div class="solution-item">Digital Shopfloor</div> <div class="solution-item">Gauge Mgmt</div> <div class="solution-item">AI-EDI Inbox</div>
+                    <div class="solution-item">Asset-IoT Monitor</div> <div class="solution-item">Inventory Mgmt</div> <div class="solution-item">Mail to DB</div>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <!-- SCENE 5: CONTACT & FINAL CALL -->
-    <div id="scene5" class="intro-scene">
-        <div class="content-wrapper">
-            <div class="w-full max-w-4xl glass-card rounded-2xl p-8 mb-8">
-                <h3 class="futuristic-title text-3xl font-bold mb-6 text-center neon-text">LET'S BUILD A SMARTER WORLD</h3>
-                <div class="mt-4">
-                    <div class="contact-item"><div class="contact-icon"><i class="fas fa-map-marker-alt text-blue-400 text-xl"></i></div><span class="text-md text-blue-100">Based in: <span class="font-bold text-white">Japan</span></span></div>
-                    <div class="contact-item"><div class="contact-icon"><i class="fas fa-envelope text-blue-400 text-xl"></i></div><span class="text-md text-blue-100">Email: <span class="font-bold text-white">akash2k01@techie.com</span></span></div>
-                    <div class="contact-item"><div class="contact-icon"><i class="fab fa-whatsapp text-blue-400 text-xl"></i></div><span class="text-md text-blue-100">WhatsApp: <span class="font-bold text-white">+81-7091714442</span></span></div>
+        </div></div>
+        
+        <!-- Scene 4: The Team -->
+        <div id="scene4" class="intro-scene"><div class="content-wrapper">
+            <div class="w-full max-w-5xl">
+                <h3 class="futuristic-title text-2xl md:text-3xl font-bold mb-6 neon-text-blue"> WE ARE HIRING OUR FOUNDING TEAM </h3>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-5 text-left">
+                    <div class="glass-card rounded-lg p-4 flex items-center"><i class="fas fa-flask text-blue-400 text-2xl mr-4"></i><span class="font-bold text-blue-100">R&D Innovators</span></div>
+                    <div class="glass-card rounded-lg p-4 flex items-center"><i class="fas fa-chart-line text-blue-400 text-2xl mr-4"></i><span class="font-bold text-blue-100">SPC Experts</span></div>
+                    <div class="glass-card rounded-lg p-4 flex items-center"><i class="fas fa-industry text-blue-400 text-2xl mr-4"></i><span class="font-bold text-blue-100">Manufacturing Pros</span></div>
+                    <div class="glass-card rounded-lg p-4 flex items-center"><i class="fas fa-bullhorn text-blue-400 text-2xl mr-4"></i><span class="font-bold text-blue-100">Marketing Specialists</span></div>
+                    <div class="glass-card rounded-lg p-4 flex items-center"><i class="fas fa-language text-blue-400 text-2xl mr-4"></i><span class="font-bold text-blue-100">Translators</span></div>
+                    <div class="glass-card rounded-lg p-4 flex items-center"><i class="fas fa-cogs text-blue-400 text-2xl mr-4"></i><span class="font-bold text-blue-100">Technical Developers</span></div>
                 </div>
             </div>
-            <div class="w-full max-w-4xl text-center">
-                <div class="glass-card rounded-2xl py-6 px-6 border-t-2 border-blue-500 border-opacity-50">
-                    <p class="text-blue-300 mb-2 text-lg">🚀 <span class="italic">Ready to revolutionize manufacturing?</span></p>
-                    <h3 class="neon-text text-3xl font-bold tracking-wide">JOIN OUR MISSION. CREATE IMPACT.</h3>
-                </div>
-            </div>
-        </div>
+        </div></div>
+
+        <!-- Scene 5: The Final Call -->
+        <div id="scene5" class="intro-scene"><div class="content-wrapper">
+            <h2 class="futuristic-title text-4xl md:text-6xl font-bold mb-10 neon-text-red">BUILD THE FUTURE WITH US.</h2>
+            <!-- IMPORTANT: Replace the link below with your Google Form link! -->
+            <a href="https://forms.gle/YOUR_GOOGLE_FORM_LINK_HERE" target="_blank">
+                <button class="cta-button-final">JOIN THE MISSION</button>
+            </a>
+            <p class="mt-8 text-sm text-gray-400 tracking-widest">Scan & Step In – We're Hiring Interns, Apprentices, Volunteers & Innovators!</p>
+        </div></div>
     </div>
+    
+    <!-- AUDIO ELEMENTS: Replace with your own high-quality audio files -->
+    <audio id="sound-ambience" src="https://assets.codepen.io/28963/sci-fi-drone-loop.mp3" loop></audio>
+    <audio id="sound-rumble" src="https://assets.codepen.io/28963/deep-rumble.mp3"></audio>
+    <audio id="sound-glitch" src="https://assets.codepen.io/28963/glitch-3.mp3"></audio>
+    <audio id="sound-powerup" src="https://assets.codepen.io/28963/power-up-3.mp3"></audio>
+    <audio id="sound-reveal" src="https://assets.codepen.io/28963/whoosh-reveal-2.mp3"></audio>
+    <audio id="sound-type" src="https://assets.codepen.io/28963/typing-loop.mp3" loop></audio>
 
-</div>
+    <!-- JAVASCRIPT LIBRARIES & ANIMATION SCRIPT -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
 
-<!-- The rest of your website content can go here -->
-<div id="main-content">
-    <h1 class="text-5xl font-bold text-center">The Journey Continues</h1>
-    <p class="text-xl text-center mt-4 text-gray-400">More sections about our technology, our roadmap, and blog can go here.</p>
-</div>
-
-
-<!-- JAVASCRIPT LIBRARIES -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
-
-<!-- ANIMATION SCRIPT -->
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-
-        // --- 1. SETUP 3D BACKGROUND ---
+    <script>
+    async function init() {
+        // --- CORE SETUP ---
+        const playSound = (id, volume = 0.5, loop = false) => { const sound = document.querySelector(id); if (sound) { sound.currentTime = 0; sound.volume = volume; sound.loop = loop; sound.play().catch(e => {}); } };
+        const stopSound = (id) => { const sound = document.querySelector(id); if (sound) { sound.pause(); sound.currentTime = 0; } };
+        const title = document.getElementById('main-title');
+        title.innerHTML = '<span class="brand-ak">AK</span> <span class="brand-solutions">SOLUTIONS</span>'.replace(/<[^>]*>|[^<>\s]/g, match => match.startsWith('<') ? match : `<span class="char">${match}</span>`);
+        const cursor = document.getElementById('custom-cursor');
+        window.addEventListener('mousemove', e => { gsap.to(cursor, { duration: 0.2, x: e.clientX, y: e.clientY }); });
+        document.addEventListener('click', () => { playSound('#sound-ambience', 0.15, true); }, { once: true });
+        
+        // --- 3D VFX ENGINE ---
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('webgl-canvas'), alpha: true });
-        
+        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('webgl-canvas'), alpha: true, antialias: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-        const particlesGeometry = new THREE.BufferGeometry();
-        const count = 700;
-        const positions = new Float32Array(count * 3);
-        for(let i = 0; i < count * 3; i++) {
-            positions[i] = (Math.random() - 0.5) * 15;
-        }
-        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-
-        const particlesMaterial = new THREE.PointsMaterial({
-            size: 0.03,
-            color: 0x00c3ff,
-            blending: THREE.AdditiveBlending,
-            transparent: true,
-            opacity: 0.8
-        });
-        const particles = new THREE.Points(particlesGeometry, particlesMaterial);
+        const cameraGroup = new THREE.Group();
+        cameraGroup.add(camera);
+        scene.add(cameraGroup);
+        
+        const createParticles = (count, color, size) => {
+            const geometry = new THREE.BufferGeometry();
+            const positions = new Float32Array(count * 3);
+            for(let i = 0; i < count * 3; i++) { positions[i] = (Math.random() - 0.5) * 50; }
+            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            const material = new THREE.PointsMaterial({ size: size, color: color, blending: THREE.AdditiveBlending, transparent: true, depthWrite: false });
+            return new THREE.Points(geometry, material);
+        };
+        const particles = createParticles(15000, 0x00aaff, 0.02);
         scene.add(particles);
-        camera.position.z = 5;
 
-        const clock = new THREE.Clock();
+        let clock = new THREE.Clock();
         function animate() {
             const elapsedTime = clock.getElapsedTime();
-            particles.rotation.y = elapsedTime * 0.05;
+            cameraGroup.rotation.y = elapsedTime * 0.03;
             renderer.render(scene, camera);
-            window.requestAnimationFrame(animate);
+            requestAnimationFrame(animate);
         }
         animate();
+        window.addEventListener('resize', () => { camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); });
 
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        });
+        // --- MASTER ANIMATION TIMELINE (40s) ---
+        const master = gsap.timeline({ onComplete: () => {gsap.set("#scene5", { pointerEvents: 'auto' }); gsap.set('body', {cursor: 'auto'});} });
 
-        // --- 2. SETUP SCROLL-DRIVEN MOVIE INTRO ---
-        gsap.registerPlugin(ScrollTrigger);
+        // --- 1. BOOT SEQUENCE (0s - 8s) ---
+        master
+            .to('body', { duration: 1, opacity: 1, ease: "power1.inOut" })
+            .set("#scene1", { opacity: 1 })
+            .from(camera.position, { z: 200, duration: 8, ease: "power3.out" }, 0)
+            .from(cameraGroup.rotation, { y: Math.PI / 2, duration: 8, ease: "power3.out" }, 0)
+            .call(() => playSound('#sound-rumble', 0.8), [], 2)
+            .from("#main-title .char", { duration: 2, opacity: 0, scale: 3, filter: 'blur(20px)', stagger: 0.1, ease: "expo.out" }, 3)
+            .from("#subtitle1", { duration: 2, y: 50, opacity: 0, ease: "power2.out" }, 4)
+            .from("#subtext1", { duration: 2, y: 50, opacity: 0, ease: "power2.out" }, 4.5)
+            .call(() => playSound('#sound-reveal'), [], 3.2);
 
-        // Hide the scroll indicator once the user starts scrolling
-        ScrollTrigger.create({
-            start: "top -10",
-            onEnter: () => gsap.to("#scroll-indicator", { autoAlpha: 0 }),
-            onLeaveBack: () => gsap.to("#scroll-indicator", { autoAlpha: 1 }),
-        });
+        // --- 2. TRANSITION: DATA SHATTER (8s - 10s) ---
+        master
+            .to("#scene1 .content-wrapper", { duration: 1.5, scale: 1.2, opacity: 0, ease: "power2.in" }, 8)
+            .to(particles.rotation, { y: '+=5', duration: 1.5, ease: "power2.in" }, 8)
+            .call(() => playSound('#sound-glitch', 0.8), [], 8.5);
 
-        // The Master Timeline
-        let masterTimeline = gsap.timeline({
-            scrollTrigger: {
-                trigger: "#intro-container",
-                pin: true,   // Pin the container
-                start: "top top",
-                end: "+=6000", // The "duration" of the scroll
-                scrub: 1,    // Link animation progress to scroll
-            }
-        });
+        // --- 3. SCENE: THE TECHNOLOGY (10s - 16s) ---
+        master
+            .set("#scene2", { opacity: 1 })
+            .from("#scene2 .content-wrapper", { duration: 1.5, y: '100vh', ease: "power3.out" }, 10)
+            .from("#scene2 .futuristic-title", { duration: 1, opacity: 0, y: -50, ease: "power2.out" }, 10.5)
+            .call(() => playSound('#sound-type', 0.3, true), [], 11)
+            .from("#scene2 .tech-item", { duration: 2, opacity: 0, x: -50, stagger: 0.2, ease: "power3.out" }, 11)
+            .call(() => stopSound('#sound-type'), [], 15);
 
-        // Animate the camera and particles for more depth
-        masterTimeline.to(camera.position, { z: 4.5, duration: 2 }, 0);
-        masterTimeline.to(particles.rotation, { x: 0.2, duration: 4 }, 0);
+        // --- 4. TRANSITION: HYPERSPACE JUMP (16s - 18s) ---
+        master
+            .to("#scene2 .content-wrapper", { duration: 1, opacity: 0, z: -3000, ease: "expo.in" }, 16)
+            .to(cameraGroup.rotation, { z: Math.PI, duration: 2, ease: "expo.inOut" }, 16)
+            .to(particles.material, { size: 0.3, duration: 1, ease: "expo.in" }, 16)
+            .to(particles.material, { size: 0.02, duration: 1, ease: "expo.out" }, 17)
+            .call(() => playSound('#sound-rumble'), [], 16);
+
+        // --- 5. SCENE: THE PLATFORM (18s - 24s) ---
+        master
+            .set("#scene3", { opacity: 1 })
+            .to(cameraGroup.rotation, { z: 0, duration: 2, ease: "expo.inOut" }, 18)
+            .from("#scene3 .futuristic-title", { duration: 1, opacity: 0, y: -50, ease: "power2.out" }, 18.5)
+            .from("#scene3 .solution-item", { duration: 1, opacity: 0, scale: 0, stagger: { from: "random", amount: 1 }, ease: "power2.out" }, 19)
+            .to("#scene3 .solution-item", { duration: 0.2, opacity: 0.3, stagger: { from: "random", amount: 1, yoyo: true, repeat: 4 }, ease: "power2.inOut" }, 20);
         
-        // Scene 1: Animate in the title
-        masterTimeline.from("#scene1 .content-wrapper > *", { opacity: 0, y: 50, scale: 0.9, stagger: 0.2, duration: 2 }, 0);
-        masterTimeline.addLabel("scene1End", 2);
-        
-        // Scene 1 -> 2 Transition
-        masterTimeline.to("#scene1", { opacity: 0, duration: 1.5, onStart: () => { document.querySelector('#scene2').style.pointerEvents = 'auto'; }}, "scene1End");
-        masterTimeline.to("#scene2", { opacity: 1, duration: 1.5 }, "scene1End");
-        masterTimeline.from("#scene2 .glass-card > *", { opacity: 0, y: 30, stagger: 0.3, duration: 1.5 }, "scene1End+=0.5");
-        masterTimeline.addLabel("scene2End", 4.5);
+        // --- 6. TRANSITION: SINGULARITY COLLAPSE (24s - 26s) ---
+        master
+            .to("#scene3 .content-wrapper", { duration: 1.5, scale: 0, rotation: 360, opacity: 0, ease: "power3.in" }, 24)
+            .to(particles.scale, { x: 0.01, y: 0.01, z: 0.01, duration: 1.5, ease: "power3.in" }, 24)
+            .call(() => playSound('#sound-powerup', 0.7), [], 24.5);
 
-        // Scene 2 -> 3 Transition
-        masterTimeline.to("#scene2", { opacity: 0, duration: 1.5, onStart: () => { document.querySelector('#scene3').style.pointerEvents = 'auto'; }}, "scene2End");
-        masterTimeline.to("#scene3", { opacity: 1, duration: 1.5 }, "scene2End");
-        masterTimeline.from("#scene3 .w-full > *", { opacity: 0, y: 30, duration: 1 });
-        masterTimeline.from("#scene3 .team-grid > *", { opacity: 0, scale: 0.8, y: 20, stagger: 0.1, duration: 1.5 }, "-=0.5");
-        masterTimeline.addLabel("scene3End", 7);
+        // --- 7. SCENE: THE TEAM (26s - 32s) ---
+        master
+            .set("#scene4", { opacity: 1 })
+            .from("#shockwave", { scale: 0, opacity: 1, duration: 1.5, ease: "expo.out" }, 26)
+            .to(particles.scale, { x: 1, y: 1, z: 1, duration: 1.5, ease: "elastic.out(1, 0.5)" }, 26)
+            .from("#scene4 .futuristic-title", { duration: 1, opacity: 0, y: -50, ease: "power2.out" }, 26.5)
+            .from("#scene4 .glass-card", { duration: 1.5, opacity: 0, scale: 0.5, stagger: { from: "random", amount: 1 }, ease: "elastic.out(1, 0.5)" }, 27);
 
-        // Scene 3 -> 4 Transition
-        masterTimeline.to("#scene3", { opacity: 0, duration: 1.5, onStart: () => { document.querySelector('#scene4').style.pointerEvents = 'auto'; }}, "scene3End");
-        masterTimeline.to("#scene4", { opacity: 1, duration: 1.5 }, "scene3End");
-        masterTimeline.from("#scene4 .w-full > *", { opacity: 0, y: 30, duration: 1 });
-        masterTimeline.from("#scene4 .check-items-container > *", { opacity: 0, x: -40, stagger: 0.2, duration: 1.5 }, "-=0.5");
-        masterTimeline.addLabel("scene4End", 9.5);
-
-        // Scene 4 -> 5 Transition
-        masterTimeline.to("#scene4", { opacity: 0, duration: 1.5, onStart: () => { document.querySelector('#scene5').style.pointerEvents = 'auto'; }}, "scene4End");
-        masterTimeline.to("#scene5", { opacity: 1, duration: 1.5 }, "scene4End");
-        masterTimeline.from("#scene5 .content-wrapper > *", { opacity: 0, scale: 0.9, y: 30, stagger: 0.3, duration: 2 });
-        masterTimeline.from("#scene5 .contact-item", { opacity: 0, x: -30, stagger: 0.2, duration: 1}, "-=1.5");
-    });
-</script>
-
+        // --- 8. FINAL TRANSITION & CTA (32s onwards) ---
+        master
+            .to("#scene4 .content-wrapper", { duration: 2, opacity: 0, filter: 'blur(20px)', y: -200, ease: "power3.in" }, 32)
+            .to(camera.position, { z: 4, duration: 3, ease: "power3.inOut" }, 32)
+            .call(() => playSound('#sound-powerup', 1), [], 33)
+            .set("#scene5", { opacity: 1 }, 34)
+            .from("#shockwave", { scale: 0, opacity: 1, duration: 1.5, ease: "expo.out" }, 34)
+            .from("#scene5 .content-wrapper > *", { duration: 2, y: 50, opacity: 0, stagger: 0.2, ease: "elastic.out(1, 0.5)" }, 34.2);
+    }
+    
+    // Start the experience once the window is loaded
+    window.addEventListener('load', init);
+    </script>
 </body>
 </html>
